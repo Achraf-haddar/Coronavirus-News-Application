@@ -7,13 +7,13 @@ import postRoutes from './routes/posts.js';
 // Initialize the app
 const app = express();
 
-// Adding routes
-app.use('/posts', postRoutes);    // use /posts as parent path for all routes
-
 // maximum input size for the images
 app.use(bodyParser.json({limit: "30mb", extended: true}));
 app.use(bodyParser.urlencoded({limit: "30mb", extended: true}));
 app.use(cors());
+
+// Adding routes
+app.use('/posts', postRoutes);    // use /posts as parent path for all routes
 
 // Connect mongodb (Atlas)
 const CONNECTION_URL = 'mongodb+srv://Achraf123:Achraf123@cluster0.lwc1u.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
