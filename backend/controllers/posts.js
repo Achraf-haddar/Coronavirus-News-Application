@@ -1,5 +1,6 @@
-import { Mongoose } from "mongoose";
 import PostMessage from "../models/postMessage.js";
+import mongoose from 'mongoose';
+import Post from "../../frontend/src/components/Posts/Post/Post.js";
 
 export const getPosts = async (req, res) => {
     try{
@@ -26,7 +27,6 @@ export const createPost = async(req, res) => {
     } catch (error){
         console.log("Hello world")
         res.status(409).json({message: error.message});
-   
     }
    
 }
@@ -34,10 +34,33 @@ export const createPost = async(req, res) => {
 
 export const updatePost = async (req, res) => {
     const { id: _id } = req.params;  // rename id to _id
-    const post = req.body;
+    const { title, message, creator, selectedFile, tags } = req.body;
     
     // Check if _id is a mongoose id
-    if (mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No post with that id');
-    const updatedPost = await PostMessage.findByIdAndUpdate(_id, post, { new: true });
+    if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No post with that id');
+    const updatedPost = { creator, title, message, tags, selectedFile, _id };
+    console.log("Hello Here1");
+    console.log(updatedPost);
+    await PostMessage.findByIdAndUpdate(_id, updatedPost, { new: true });
+    res.json(updatedPost);
+}
+
+
+export const deletePost = async (req, res) => {
+    const { id: _id } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No post with that id');
+    console.log("OK")
+    await PostMessage.findByIdAndDelete(_id);
+
+    res.json({message: "Post deleted successfully"});
+}
+
+export const likePost = async (req, res) => {
+    const { id: _id } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No post with that id');
+
+    const post = await PostMessage.findById(_id);
+    const updatedPost = await PostMessage.findByIdAndUpdate(id, { likeCount: post.likeCount + 1 }, {new: true});
+
     res.json(updatedPost);
 }
