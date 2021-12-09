@@ -14,8 +14,9 @@ import Post1 from './images/Post1.PNG'
 const App = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
-    
+    // Dispatch an action
     useEffect(() => {
+        // getPosts is the action
         dispatch(getPosts());
     }, [dispatch]);
     
