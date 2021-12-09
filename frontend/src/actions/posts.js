@@ -7,7 +7,7 @@ export const getPosts = () => async (dispatch) => {
         const { data } = await api.fetchPosts();
         // Action must have a type and a payload
         // And dispatch it
-        dispatch({ type: 'FETCH_ALL', payload: [] });
+        dispatch({ type: 'FETCH_ALL', payload: data });
     } catch (error) {
         console.log(error.message);
     }
