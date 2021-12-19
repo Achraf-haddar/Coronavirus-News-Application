@@ -10,7 +10,7 @@ import {getPosts} from './actions/posts';
 import { Container, AppBar, Typography, Grid } from '@material-ui/core';
 import useStyles from './styles';
 
-import Post1 from './images/Post1.PNG'
+import TitleImage from './images/TitleImage.jpg'
 const App = () => {
     const [currentId, setCurrentId] = useState(null);
     const classes = useStyles();
@@ -24,8 +24,8 @@ const App = () => {
     return (
         <Container maxWidth="lg">
             <AppBar className={classes.appBar} position="static" color="inherit">
-                <Typography className={classes.heading} variant="h2" align="center">Posts</Typography>
-                <img className={classes.image} src={Post1} alt="Posts1" height="160"/>
+                <Typography className={classes.heading} variant="h2" align="center">Corona News</Typography>
+                <img className={classes.image} src={TitleImage} alt="Posts1" height="160"/>
             </AppBar>
             {/*<Grow in="true">  Provide Simple Animation */}
                 <Container>
