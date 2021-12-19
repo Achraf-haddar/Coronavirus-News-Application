@@ -129,6 +129,7 @@ frontend/**/*.backup.*
 frontend/**/*.back.*
 
 frontend/node_modules
+frontend/build
 
 frontend/*.sublime*
 

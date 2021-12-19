@@ -17,6 +17,10 @@ app.use(cors());
 // Adding routes
 app.use('/posts', postRoutes);    // use /posts as parent path for all routes
 
+app.get('/', (req, res) => {
+    res.send('Hello to Corona News API');
+})
+
 // Connect mongodb (Atlas)
 const CONNECTION_URL = process.env.CONNECTION_URL;
 const PORT = process.env.PORT || 5000;
