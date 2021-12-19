@@ -3,9 +3,11 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import postRoutes from './routes/posts.js';
+import dotenv from 'dotenv';
 
 // Initialize the app
 const app = express();
+dotenv.config();
 
 // maximum input size for the images
 app.use(bodyParser.json({limit: "30mb", extended: true}));
@@ -16,7 +18,7 @@ app.use(cors());
 app.use('/posts', postRoutes);    // use /posts as parent path for all routes
 
 // Connect mongodb (Atlas)
-const CONNECTION_URL = 'mongodb+srv://Achraf123:Achraf123@cluster0.lwc1u.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const CONNECTION_URL = process.env.CONNECTION_URL;
 const PORT = process.env.PORT || 5000;
 
 
